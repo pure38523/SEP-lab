@@ -48,6 +48,45 @@ class Disk():
         lt(90)
         fd(self.width / 2)
         end_fill()
+
+class Pole:
+    
+    def __init__(self, name, x, y):
+        self.name = name
+        self.x = x
+        self.y = y
+        self.stack = []
+        self.top_position = 0
+        self.thickness = 30
+        self.length = 210
+
+    def showpole(self):
+        speed(0)
+        pu()
+        color("black")
+        goto(self.x, self.y)
+        seth(0)
+        pd()
+        begin_fill()
+        fd(self.thickness / 2)
+        lt(90)
+        fd(self.length)
+        lt(90)
+        fd(self.thickness)
+        lt(90)
+        fd(self.length)
+        lt(90)
+        fd(self.thickness / 2)
+        end_fill()
+        
+    def pushdisk(self, disk):
+        self.stack.append(disk)
+        disk.newpos(self.x, self.y + disk.height * len(self.stack))
+
+    def popdisk(self):
+        disk = self.stack.pop(len(self.stack) - 1)
+        disk.newpos(self.x, self.length + 50)
+        return disk
         
 class Hanoi(object):
     def __init__(self, n = 3, start ="A", workspace = "B", destination = "C"):
