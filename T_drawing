@@ -16,12 +16,3 @@ class Simple_drawing_window3(QWidget):
         p.drawPixmap(QRect(100,100,200,200), self.jojo)
         p.end()
 
-def main():
-    app = QApplication(sys.argv)
-    t = Simple_drawing_window3()
-    t.show()
-
-    return app.exec_()
-
-if __name__ == "__main__":
-    sys.exit(main())
